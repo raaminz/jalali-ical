@@ -19,7 +19,7 @@ func NewIcal() *ical {
 	return &ical{cal}
 }
 
-func (i *ical) AddEvent(day *time.Time, title string) {
+func (i *ical) AddEvent(day time.Time, title string) {
 	hash := md5.Sum([]byte(title))
 	id := hex.EncodeToString(hash[:])
 	event := i.cal.AddEvent(fmt.Sprintf("%s@%s",

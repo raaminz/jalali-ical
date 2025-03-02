@@ -23,6 +23,7 @@ func TehranLocation() *time.Location {
 
 }
 
+// Year is not used method
 func (j *jalaliCal) Year() int {
 	return j.pt.Year()
 

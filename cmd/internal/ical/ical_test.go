@@ -35,9 +35,9 @@ END:VCALENDAR
 func TestCreate(t *testing.T) {
 	today := time.Date(2022, 12, 25, 0, 0, 0, 0, time.UTC)
 	ical := ical.NewIcal()
-	ical.AddEvent(&today, "hello")
+	ical.AddEvent(today, "hello")
 	tomorrow := today.Add(24 * time.Hour)
-	ical.AddEvent(&tomorrow, "1394/10/11 (دی)")
+	ical.AddEvent(tomorrow, "1394/10/11 (دی)")
 	got := ical.Serialize()
 	if strings.TrimSpace(got) != strings.TrimSpace(expected) {
 		t.Errorf("got %s want %s", got, expected)
