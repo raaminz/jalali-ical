@@ -42,7 +42,7 @@ func Main() error {
 	firstJalaliYear := jalalical.NewJalaliCal(firstDay)
 	secondJalaliYear := jalalical.NewJalaliCal(*currday)
 	// persian (jalali) calendar, filename
-	fileName := fmt.Sprintf("%d (%d-%d) persian calendar.ics",
+	fileName := fmt.Sprintf("%d_(%d-%d)_persian_calendar.ics",
 		year, firstJalaliYear.Year(), secondJalaliYear.Year())
 
 	return writeToFile(fileName, iclContent)
