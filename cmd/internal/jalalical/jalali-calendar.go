@@ -6,11 +6,24 @@ import (
 	ptime "github.com/yaa110/go-persian-calendar"
 )
 
-func FormatAsJalaliDay(t time.Time) string {
-	pt := ptime.New(t)
-	return pt.Format("yyyy MMM dd")
+type jalaliCal struct {
+	pt ptime.Time
 }
 
-func TehranTimezone() *time.Location {
+func NewJalaliCal(t time.Time) *jalaliCal {
+	return &jalaliCal{ptime.New(t)}
+}
+
+func (j *jalaliCal) FormatDay() string {
+	return j.pt.Format("yyyy/MM/dd (MMM)")
+}
+
+func TehranLocation() *time.Location {
 	return ptime.Iran()
+
+}
+
+func (j *jalaliCal) Year() int {
+	return j.pt.Year()
+
 }
