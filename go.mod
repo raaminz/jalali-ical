@@ -1,6 +1,6 @@
 module ramin.tech/cmd/jalai-ical
 
-go 1.23.6
+go 1.25.1
 
 require (
 	github.com/arran4/golang-ical v0.3.2

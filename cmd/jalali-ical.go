@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -10,14 +11,19 @@ import (
 	"ramin.tech/cmd/jalai-ical/cmd/internal/jalalical"
 )
 
+var (
+	year = flag.Int("year", time.Now().Year(), "Gregorian Year to be converted")
+)
+
 func main() {
-	if err := Main(); err != nil {
+	flag.Parse()
+
+	if err := Main(*year); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func Main() error {
-	year := time.Now().Year()
+func Main(year int) error {
 	fmt.Printf("generate the persian ical file for year %d", year)
 
 	firstDay := time.Date(year, 1, 1, 0, 0, 0, 0, time.UTC)
@@ -54,7 +60,7 @@ func writeToFile(fileName string, data string) error {
 	if err != nil {
 		return err
 	}
-	defer file.Close()
+	defer func() { _ = file.Close() }()
 
 	_, err = file.WriteString(data)
 	if err != nil {
